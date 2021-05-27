@@ -4,7 +4,7 @@
 [English](##English)
 \
 \
-##Español
+ ## Español
 
 En este markdown documentaré todo con respecto a este ejercicio.
 
@@ -16,7 +16,7 @@ Dependencias:
 
 ---
 
-##English
+ ## English
 
 In this markdown i will document everything of this exercise.
 
