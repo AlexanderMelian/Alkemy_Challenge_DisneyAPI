@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### MVN ###
+.mvn/
+
+
+###
+/testsql

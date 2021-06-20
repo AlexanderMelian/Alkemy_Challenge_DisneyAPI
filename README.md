@@ -11,6 +11,10 @@ Dependencias:
 - MariaDB Driver 
 - Spring Data JPA 
 - Spring Web
+- Lombok
+
+\
+Para hacer una búsqueda hay que colocar dentro de la url correspondiente el equivalente a "url:puerto/{tipo}?{filtro}={valor}"
 
 
 ---
@@ -23,3 +27,4 @@ Dependencies:
 - MariaDB Driver 
 - Spring Data JPA 
 - Spring Web
+- Lombok

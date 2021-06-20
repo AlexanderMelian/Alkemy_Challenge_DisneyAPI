@@ -2,29 +2,23 @@ package com.alkemy.DisneyAPI.controller;
 
 
 import com.alkemy.DisneyAPI.model.Genders;
-import com.alkemy.DisneyAPI.service.GendersService;
+import com.alkemy.DisneyAPI.repository.GendersRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 
 @RequestMapping("/genders")
 @RestController
 public class GendersController {
 
     @Autowired
-    private GendersService gendersService;
+    private GendersRepository gendersRepository;
 
     @GetMapping()
-    public ArrayList<Object[]> getAll(){
-        return gendersService.getAll();
+    public Iterable<Genders> findAll(){
+        return gendersRepository.findAll();
     }
-
+    /*
     @PostMapping("save")
     public Genders save(@RequestParam("file") MultipartFile image, @ModelAttribute Genders gender){
         if(!image.isEmpty()){
@@ -60,4 +54,5 @@ public class GendersController {
             return "Gender cannot deleted id:" + id;
         }
     }
+    */
 }

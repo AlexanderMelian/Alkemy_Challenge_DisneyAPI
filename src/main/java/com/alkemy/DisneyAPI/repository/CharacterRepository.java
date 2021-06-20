@@ -1,22 +1,28 @@
 package com.alkemy.DisneyAPI.repository;
 
+import java.util.Optional;
+
 import com.alkemy.DisneyAPI.model.Characters;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Repository
 public interface CharacterRepository extends CrudRepository<Characters, Integer>{
 
-    public abstract Characters getByName(String name);
-    public abstract Characters getByAge(Integer age);
-    public abstract Characters getByWeight(Integer weight);
-    public abstract Characters getById(Integer characterId);
+    public Iterable<Characters> findByName(String name);
 
+    public Iterable<Characters> findByAge(Integer age);
 
-    @Query(value = "SELECT * FROM characters",nativeQuery = true)
-    public ArrayList<Object[]> getAll();
+    public Iterable<Characters> findByWeight(Integer weight);
+
+    /*
+    @Query(value = "SELECT name,image FROM characters;",nativeQuery = true)
+    public Iterable<Characters> findAll(Integer characterId);
+    */
+
+    @Query(value = "select * from characters" ,nativeQuery = true)
+    public Optional<Iterable<Characters>> getAll();
 }
