@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Characters;
-import com.alkemy.DisneyAPI.repository.CharacterRepository;
+import com.alkemy.DisneyAPI.services.CharacterServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,36 +18,32 @@ import org.springframework.web.multipart.MultipartFile;
 public class CharactersController {
 
     @Autowired
-    private CharacterRepository characterRepository;
+    private CharacterServices characterServices;
 
     @GetMapping()
-    public Optional<Iterable<Characters>> getAll(){
-        return characterRepository.getAll();
+    public Iterable<Characters> findAll(){
+        return characterServices.findAll();
     }
 
     @GetMapping("/{id}")
     public Optional<Characters> findById(@PathVariable("id") Integer characterId){
-        return characterRepository.findById(characterId);
+        return characterServices.findById(characterId);
     }
     
     @GetMapping(params="name")
-    public Iterable<Characters> findByName(@RequestParam("name") String name){
-        return characterRepository.findByName(name);
+    public Optional<Iterable<Characters>> findByName(@RequestParam("name") String name){
+        return characterServices.findByName(name);
     }
     
     @GetMapping(params="age")
-    public Iterable<Characters> findByAge(@RequestParam("age") Integer age){
-        return characterRepository.findByAge(age);
-    }
-    @GetMapping(params="weight")
-    public Iterable<Characters> findByWeight(@RequestParam("weight") Integer weight){
-        return characterRepository.findByWeight(weight);
+    public Optional<Iterable<Characters>> findByAge(@RequestParam("age") Integer age){
+        return characterServices.findByAge(age);
     }
     
     @DeleteMapping(path = "delete/{id}")
     public String delete(@PathVariable("id") Integer id){
         try {
-            characterRepository.deleteById(id);
+            characterServices.delete(id);
             return "Character was deleted id: " + id;
         } catch (Exception e) {
             return "Character cannot deleted id: " + id;
@@ -70,10 +66,8 @@ public class CharactersController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
-        return characterRepository.save(character);
+        return characterServices.save(character);
     }
     
 }

@@ -1,19 +1,31 @@
 package com.alkemy.DisneyAPI.model;
 
 
+import java.util.List;
 
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Genders")
+@Table(name = "genders")
 public class Genders {
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id private Integer pk_genderid;
+    @Id
+    private Integer pk_genderid;
     private String name;
     private String image;
-    //private ArrayList<Integer> moviesID = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "gendersID",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Movies> moviesID;
+
 }
