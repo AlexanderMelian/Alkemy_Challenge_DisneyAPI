@@ -2,7 +2,7 @@
 
 [Español](#español)\
 [English](#english)
-
+[Links que me ayudaron](#links)
  # Español
 
 En este markdown documentaré todo con respecto a este ejercicio.
@@ -26,7 +26,8 @@ Ejemplo
 `
 localhost:8080/characters?name=THOR
 `
-El mail es enviado por gmail, fue testeado enviando a unos [mails temporales](temp-mail.org)
+El mail es enviado por gmail, fue testeado enviando a unos [mails temporales](temp-mail.org).
+
 
 
 
@@ -45,6 +46,26 @@ Dependencies:
 - Mail Sender
 
 
+For make a search you need to write in the url this format.
+
+`
+url:puerto/{tipo}?{filtro}={valor}
+`
+
+
+Example
+`
+localhost:8080/characters?name=THOR
+`
+
+The email is sent by gmail, was tested sending to [temporal mails](temp-mail.org).
+
+
+
+
+---
+
+# Links
 
 Videos/Páginas/Cursos que me ayudaron:
 - https://youtu.be/wYy8RNPtChM
