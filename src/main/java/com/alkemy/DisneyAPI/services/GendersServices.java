@@ -1,14 +1,12 @@
 package com.alkemy.DisneyAPI.services;
 
-/*
-import java.util.ArrayList;
 import java.util.List;
-*/
+import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Genders;
-//import com.alkemy.DisneyAPI.model.Movies;
+import com.alkemy.DisneyAPI.model.Movies;
 import com.alkemy.DisneyAPI.repository.GendersRepository;
-//import com.alkemy.DisneyAPI.repository.MoviesRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,27 +17,30 @@ public class GendersServices{
     @Autowired
     private GendersRepository gendersRepository;
 
-    //@Autowired
-    //private MoviesRepository movieRepository;
-    
     public Genders save(Genders gender){
         return gendersRepository.save(gender);       
     }
-    /*public Iterable<Movies> getMoviesByGenreId(Integer genderId){
-        Genders gender = gendersRepository.getById(genderId);
-        ArrayList<Movies> movies = new ArrayList<>();
-
-        if(gender != null){    
-        List<Integer> moviesId = gender.getMoviesId();   
-
-            for (Integer movieId : moviesId) {
-                Movies movie = movieRepository.getById(movieId);
-                if(movie != null){
-                    movies.add(movie);                        
-                }
-            }
+    public boolean delete(Integer id){
+        try{
+            gendersRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            return false;
         }
-        return movies;
+        
     }
-    */
+    public Optional<Genders> findById(Integer genderId) {
+        return gendersRepository.findById(genderId);
+    }
+    public List<Movies> getMoviesByGenreId(Integer genreId) {
+        Genders gender = gendersRepository.getById(genreId);
+        if(gender != null){
+            List<Movies> movies = gender.getMoviesID();   
+            return movies;
+        }else{
+            return null;
+        }
+
+    }
+
 }

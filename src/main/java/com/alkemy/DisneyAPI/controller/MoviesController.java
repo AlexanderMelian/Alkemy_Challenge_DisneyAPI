@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Movies;
+import com.alkemy.DisneyAPI.services.GendersServices;
 import com.alkemy.DisneyAPI.services.MoviesServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,13 @@ public class MoviesController {
     
     @Autowired
     private MoviesServices moviesServices;
+    @Autowired
+    private GendersServices gendersServices; 
+
 
     @GetMapping()
-    public Iterable<Movies> findAll(){
-        return moviesServices.findAll();
+    public Iterable<Object[]> getAll(){
+        return moviesServices.getAll();
     }
 
     @GetMapping("/{id}")
@@ -31,12 +36,16 @@ public class MoviesController {
     }
     
     @GetMapping(params="name")
-    public Iterable<Movies> findByTitle(@RequestParam("name") String title){
+    public Iterable<Object[]> findByTitle(@RequestParam("name") String title){
         return moviesServices.findByTitle(title);
     }
     @GetMapping(params="order")
-    public Iterable<Movies> getByOrder(@RequestParam("order") String order){
-        return getByOrder(order);
+    public Iterable<Object[]> getByOrder(@RequestParam("order") String order){
+        return moviesServices.getByOrder(order);
+    }
+    @GetMapping(value = "", params="genreId")
+    public List<Movies> getByGenre(@RequestParam("genreId") Integer genreId){
+        return gendersServices.getMoviesByGenreId(genreId);
     }
     
     @DeleteMapping(path = "delete/{id}")

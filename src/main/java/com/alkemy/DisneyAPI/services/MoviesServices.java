@@ -1,6 +1,5 @@
 package com.alkemy.DisneyAPI.services;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Movies;
@@ -14,9 +13,11 @@ public class MoviesServices {
     @Autowired
     private MoviesRepository movieRepository;
 
-
     public Iterable<Movies> findAll(){
         return movieRepository.findAll();
+    }
+    public Iterable<Object[]> getAll(){
+        return movieRepository.getAll();
     }
 
     public Optional<Movies> findById(Integer id){
@@ -26,17 +27,17 @@ public class MoviesServices {
     {
         return movieRepository.save(movie);
     }
-    public Iterable<Movies> findByTitle(String title){
+    public Iterable<Object[]> findByTitle(String title){
         return movieRepository.findByTitle(title);
     }
 
-    public ArrayList<Movies> getByOrder(String order){
+    public Iterable<Object[]> getByOrder(String order){
         if(order.equals("ASC")){
-            return (ArrayList<Movies>) movieRepository.getAllByOrderASC();            
+            return movieRepository.getAllByOrderASC();            
         }else if(order.equals("DESC")){
-            return (ArrayList<Movies>) movieRepository.getAllByOrderDESC();  
+            return movieRepository.getAllByOrderDESC();  
         }else{
-            return (ArrayList<Movies>) movieRepository.findAll();
+            return movieRepository.getAll();
         }
     }
     
@@ -49,6 +50,5 @@ public class MoviesServices {
         }
         
     }
-
 
 }

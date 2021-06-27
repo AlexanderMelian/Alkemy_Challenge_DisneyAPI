@@ -1,7 +1,6 @@
 package com.alkemy.DisneyAPI.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Characters;
 
@@ -13,15 +12,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CharacterRepository extends CrudRepository<Characters, Integer>{
 
-    public Optional<Iterable<Characters>> findByName(String name);
+    public Iterable<Object[]> findByName(String name);
 
-    public Optional<Iterable<Characters>> findByAge(Integer age);
+    public Iterable<Object[]> findByAge(Integer age);
 
-    public Optional<Iterable<Characters>> findByWeight(Integer weight);
+    @Query(value = "select image,name from characters;" ,nativeQuery = true)
+    public Iterable<Object[]> getAll();
 
-    @Query(value = "select * from characters" ,nativeQuery = true)
-    public Optional<Iterable<Characters>> getAll();
-
-    public List<Characters> findByfilmsID(String movie);
+    public List<Object[]> findByfilmsID(String movie);
 
 }

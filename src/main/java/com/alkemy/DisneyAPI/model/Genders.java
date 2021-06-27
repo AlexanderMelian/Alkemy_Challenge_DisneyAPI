@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Data
@@ -24,7 +26,7 @@ public class Genders {
     private String name;
     private String image;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "gendersID",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Movies> moviesID;
 

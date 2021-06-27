@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -30,10 +31,11 @@ public class Movies {
         @JsonFormat(pattern="yyyy/MM/dd")
         private Date creation_date;
         private Integer rating;
+        @JsonBackReference
         @ManyToMany(fetch=FetchType.LAZY,  mappedBy = "filmsID", cascade = CascadeType.ALL)
         private List<Characters> charactersID;
 
-        
+        @JsonBackReference
         @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         @JoinColumn(name="pk_genderid")
         private Genders gendersID;

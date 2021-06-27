@@ -2,6 +2,8 @@ package com.alkemy.DisneyAPI.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class Characters {
         private Integer age;
         private Integer weight;
         private String history;
+        @JsonManagedReference
         @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         @JoinTable(name = "characters_movies",
         joinColumns = {

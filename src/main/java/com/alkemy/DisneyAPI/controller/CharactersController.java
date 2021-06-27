@@ -21,8 +21,8 @@ public class CharactersController {
     private CharacterServices characterServices;
 
     @GetMapping()
-    public Iterable<Characters> findAll(){
-        return characterServices.findAll();
+    public Iterable<Object[]> getAll(){
+        return characterServices.getAll();
     }
 
     @GetMapping("/{id}")
@@ -31,15 +31,20 @@ public class CharactersController {
     }
     
     @GetMapping(params="name")
-    public Optional<Iterable<Characters>> findByName(@RequestParam("name") String name){
+    public Iterable<Object[]> findByName(@RequestParam("name") String name){
         return characterServices.findByName(name);
     }
     
     @GetMapping(params="age")
-    public Optional<Iterable<Characters>> findByAge(@RequestParam("age") Integer age){
+    public Iterable<Object[]> findByAge(@RequestParam("age") Integer age){
         return characterServices.findByAge(age);
     }
-    
+    /*
+    @GetMapping(params="idMovie")
+    public Iterable<Object[]> getByMovieId(@RequestParam("idMovie") Integer idMovie){
+        return characterServices.getByMovieId(idMovie);
+    }
+    */
     @DeleteMapping(path = "delete/{id}")
     public String delete(@PathVariable("id") Integer id){
         try {
@@ -52,9 +57,7 @@ public class CharactersController {
     
     @PostMapping("save")
     public Characters save(@RequestParam("file") MultipartFile image, @ModelAttribute Characters character){
-
         if(!image.isEmpty()){
-
             Path imagesPath = Paths.get("src//main//resources//static//images");
             String absolutPath = imagesPath.toFile().getAbsolutePath();
             try {

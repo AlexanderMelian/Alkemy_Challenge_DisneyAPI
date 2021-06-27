@@ -1,6 +1,5 @@
 package com.alkemy.DisneyAPI.repository;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Movies;
@@ -12,19 +11,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MoviesRepository extends CrudRepository<Movies, Integer> {
 
-    public Iterable<Movies> findByTitle(String title);
+    public Iterable<Object[]> findByTitle(String title);
 
     public Optional<Movies> findById(Integer id);
+    
+    @Query(value = "SELECT title,image,creation_date FROM movies",nativeQuery = true)
+    public Iterable<Object[]> getAll();
 
-    //tiene que devolver -> imagen, titulo y fecha de creacion
-    @Query(value = "select * from movies" ,nativeQuery = true)
-    public Optional<Iterable<Movies>> getAll();
+    @Query(value = "SELECT title,image,creation_date FROM movies ORDER BY creation_date ASC",nativeQuery = true)
+    public Iterable<Object[]> getAllByOrderASC();
 
-    @Query(value = "SELECT * FROM movies ORDER BY creation_date ASC",nativeQuery = true)
-    public Iterable<Movies> getAllByOrderASC();
-
-    @Query(value = "SELECT * FROM movies ORDER BY creation_date DESC",nativeQuery = true)
-    public ArrayList<Movies> getAllByOrderDESC();
-
+    @Query(value = "SELECT title,image,creation_date FROM movies ORDER BY creation_date DESC",nativeQuery = true)
+    public Iterable<Object[]> getAllByOrderDESC();
+    
     public Movies getById(Integer movieId);
 }

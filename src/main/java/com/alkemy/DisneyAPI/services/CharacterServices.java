@@ -1,6 +1,5 @@
 package com.alkemy.DisneyAPI.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.alkemy.DisneyAPI.model.Characters;
@@ -13,19 +12,23 @@ import org.springframework.stereotype.Service;
 public class CharacterServices {
     @Autowired
     private CharacterRepository characterRepository;
-
-
-
-    public List<Characters> findByfilmsID(String movie) throws Exception{
-        try {
-			List<Characters> characters = characterRepository.findByfilmsID(movie);
-			return characters;
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
+    
+    public Iterable<Characters> findAll(){
+        return characterRepository.findAll();
+    }
+    public Iterable<Object[]> getAll() {
+        return characterRepository.getAll();
+    }
+    public Optional<Characters> findById(Integer characterId) {
+        return characterRepository.findById(characterId);
+    }
+    public Iterable<Object[]> findByName(String name) {
+        return characterRepository.findByName(name);
+    }
+    public Iterable<Object[]> findByAge(Integer age) {
+        return characterRepository.findByAge(age);
     }
 
-    
     public boolean delete(Integer id){
         try{
             characterRepository.deleteById(id);
@@ -35,21 +38,10 @@ public class CharacterServices {
         }
         
     }
-    public Iterable<Characters> findAll(){
-        return characterRepository.findAll();
-    }
-    public Optional<Characters> findById(Integer characterId) {
-        return characterRepository.findById(characterId);
-    }
-    public Optional<Iterable<Characters>> findByName(String name) {
-        return characterRepository.findByName(name);
-    }
-    public Optional<Iterable<Characters>> findByAge(Integer age) {
-        return characterRepository.findByAge(age);
-    }
-
 
     public Characters save(Characters character) {
         return characterRepository.save(character);
     }
+
+
 }

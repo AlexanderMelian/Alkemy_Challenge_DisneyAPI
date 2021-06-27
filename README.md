@@ -1,5 +1,51 @@
 # Alkemy Challenge Disney API
 
+[Español](#español)\
+[English](#english)
+
+ # Español
+
+En este markdown documentaré todo con respecto a este ejercicio.
+
+Dependencias:
+- MariaDB Driver 
+- Spring Data JPA
+- Spring Web
+- Lombok
+- security
+- Mail Sender
+
+\
+Para hacer una búsqueda hay que colocar dentro de la url correspondiente el equivalente a 
+
+`
+url:puerto/{tipo}?{filtro}={valor}
+`
+\
+Ejemplo
+`
+localhost:8080/characters?name=THOR
+`
+El mail es enviado por gmail, fue testeado enviando a unos [mails temporales](temp-mail.org)
+
+
+
+---
+
+ # English
+
+In this markdown i will document everything of this exercise.
+
+Dependencies:
+- MariaDB Driver 
+- Spring Data JPA
+- Spring Web
+- Lombok
+- security
+- Mail Sender
+
+
+
 Videos/Páginas/Cursos que me ayudaron:
 - https://youtu.be/wYy8RNPtChM
 - https://youtu.be/gKzEFSnWnk4
@@ -31,33 +77,3 @@ Videos/Páginas/Cursos que me ayudaron:
 - https://youtu.be/JUMbefx67wk
 - https://youtu.be/WKOoAQTioNU
 - And more...
-
-
-[Español](#español)\
-[English](#english)
-
- # Español
-
-En este markdown documentaré todo con respecto a este ejercicio.
-
-Dependencias:
-- MariaDB Driver 
-- Spring Data JPA
-- Spring Web
-- Lombok
-
-\
-Para hacer una búsqueda hay que colocar dentro de la url correspondiente el equivalente a "url:puerto/{tipo}?{filtro}={valor}"
-
-
----
-
- # English
-
-In this markdown i will document everything of this exercise.
-
-Dependencies:
-- MariaDB Driver 
-- Spring Data JPA
-- Spring Web
-- Lombok
